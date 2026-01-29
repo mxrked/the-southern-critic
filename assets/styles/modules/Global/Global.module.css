@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "Afacad Bold";
+  src: url("../../../fonts/Afacad/Afacad-Bold.ttf");
+}
+@font-face {
+  font-family: "Afacad Semibold";
+  src: url("../../../fonts/Afacad/Afacad-SemiBold.ttf");
+}
+@font-face {
+  font-family: "Afacad Medium";
+  src: url("../../../fonts/Afacad/Afacad-Medium.ttf");
+}
+@font-face {
+  font-family: "Afacad Regular";
+  src: url("../../../fonts/Afacad/Afacad-Regular.ttf");
+}
+.darken_overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 400;
+  transition: 0.5s ease-in-out;
+}/*# sourceMappingURL=Global.module.css.map */
