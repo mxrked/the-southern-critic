@@ -14,6 +14,7 @@ export const IndexTop = () => {
    return (
      <section id="indexTop" className={`${styles.index_top}`}>
 
+         //! To make a good version of a poster slider, check out "poster-slider.html" in /test-files
         <div className={`${styles.poster_slider_bg}`}></div>
 
         <div className={`${styles.index_top_overlay}`}></div>
