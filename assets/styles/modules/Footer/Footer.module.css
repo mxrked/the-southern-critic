@@ -13,4 +13,16 @@
 @font-face {
   font-family: "Afacad Regular";
   src: url("../../../fonts/Afacad/Afacad-Regular.ttf");
+}
+@font-face {
+  font-family: "Inter Bold";
+  src: url("../../../fonts/Inter/Inter-Bold.ttf");
+}
+@font-face {
+  font-family: "Inter Semibold";
+  src: url("../../../fonts/Inter/Inter-Semibold.ttf");
+}
+@font-face {
+  font-family: "Inter Medium";
+  src: url("../../../fonts/Inter/Inter-Medium.ttf");
 }/*# sourceMappingURL=Footer.module.css.map */
