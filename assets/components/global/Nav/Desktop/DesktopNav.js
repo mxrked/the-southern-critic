@@ -9,6 +9,11 @@ import { useRouter } from "next/router";
 
 import { Logo } from "../Both/Logo";
 
+import { RiLogoutBoxRLine } from "react-icons/ri";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+
+import LogoutUser from "@/assets/functions/Global/account/LogoutUser";
+
 import styles from "../../../../styles/modules/Nav/Nav.module.css";
 
 export const DesktopNav = ({isLoggedInValue}) => {
@@ -58,7 +63,7 @@ export const DesktopNav = ({isLoggedInValue}) => {
 
                                     <li>
 
-                                        <a href="/watchlist">
+                                        <a href="/profile#watchlist">
                                         
                                             <span>WATCHLIST</span>
                                             
@@ -69,15 +74,29 @@ export const DesktopNav = ({isLoggedInValue}) => {
                                     </li>
                                     
                                     {isLoggedInValue ? (
-                                        <li className={styles.black_button}>
+                                        <div>
 
-                                            <a href="/profile">
-                                            
-                                                <span>PROFILE</span>
-                                            
-                                            </a>
+                                            <li className={styles.black_button}>
 
-                                        </li>
+                                                <a href="/profile">
+                                                
+                                                    <LazyLoadImage src={sessionStorage.getItem("Logged In Pfp")}/>
+                                                
+                                                </a>
+
+                                            </li>
+
+                                            <li>
+
+                                                <button onClick={() => {
+                                                    LogoutUser();
+                                                }}>
+                                                    <RiLogoutBoxRLine/>
+                                                </button>
+
+                                            </li>
+                                            
+                                        </div>
                                     ) : (
                                         <li className={styles.black_button}>
 

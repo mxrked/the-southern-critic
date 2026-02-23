@@ -7,9 +7,13 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
+
+import { RiLogoutBoxRLine } from "react-icons/ri";
 import { FaTimes } from "react-icons/fa";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import CloseMobileNavMenu from "@/assets/functions/Nav/CloseMobileNavMenu";
+import LogoutUser from "@/assets/functions/Global/account/LogoutUser";
 
 import styles from "../../../../styles/modules/Nav/Nav.module.css";
 
@@ -33,7 +37,7 @@ export const MobileNavMenu = ({isLoggedInValue}) => {
 
                 <li>
 
-                    <a href="/watchlist" onClick={CloseMobileNavMenu}>
+                    <a href="//profile#watchlist" onClick={CloseMobileNavMenu}>
                                         
                         <span>WATCHLIST</span>
                                         
@@ -47,6 +51,8 @@ export const MobileNavMenu = ({isLoggedInValue}) => {
                         <a href="/profile" onClick={CloseMobileNavMenu}>
                                             
                             <span>PROFILE</span>
+
+                            <LazyLoadImage src={sessionStorage.getItem("Logged In Pfp")}/>
                                             
                         </a>
 
@@ -58,6 +64,24 @@ export const MobileNavMenu = ({isLoggedInValue}) => {
                                             
                             <span>LOGIN</span>
                                             
+                        </a>
+
+                    </li>
+                )}
+
+                {isLoggedInValue && (
+                    <li onClick={() => {
+                        CloseMobileNavMenu();
+
+                        setTimeout(() => {
+                            LogoutUser();
+                        }, 50);
+                    }}>
+
+                        <a>
+
+                            <RiLogoutBoxRLine/> &nbsp; LOGOUT
+
                         </a>
 
                     </li>
