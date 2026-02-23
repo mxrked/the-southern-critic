@@ -56,6 +56,10 @@
                             @include displayElement(flex, flex-end, center);
                             font-family: "Afacad Medium";
 
+                            div {
+                                @include displayElement(flex, space-evenly, center);
+                            }
+
                             li {
                                 margin-left: 30px;
 
@@ -83,13 +87,33 @@
                                         }
                                     }
                                 }
+
+                                button {
+                                    // border: 2px solid $MineShaft;
+                                    padding: 5px;
+                                    color: $MineShaft;
+                                    font-size: clamp(25px, 28px, 28px);
+                                    border-radius: 5px;
+                                }
                             }
 
                             .black_button {
                                 a {
                                     background-color: $MineShaft;
-                                    padding: 10px;
                                     color: white;
+                                    @include displayElement(flex, center, center);
+                                    border-radius: 10px;
+                                    overflow: hidden;
+
+                                    span {
+                                        padding: 10px;
+                                    }
+
+                                    img {
+                                        max-width: 40px;
+                                        height: 40px;
+                                        overflow: hidden;
+                                    }
 
                                     &:hover {
                                         background-color: $CodGray;
@@ -159,7 +183,7 @@
 }
 .mobile_nav_menu {
     display: none;
-    position: absolute;
+    position: fixed;
     background-color: rgb(221, 221, 221);
     z-index: 1000 ;
     max-width: 500px;
@@ -192,6 +216,7 @@
             height: 80px;
             position: relative;
             border-bottom: 2px solid rgb(214, 214, 214);
+            cursor: pointer;
 
             a {
                 display: flex;
@@ -204,6 +229,12 @@
                 padding: 20px;
                 width: 100%;
                 height: 100%;
+                @include displayElement(flex, space-between, center);
+
+                img {
+                    max-width: 40px;
+                    border-radius: 10px;
+                }
 
                 &:hover {
                     background-color: $MineShaft;

@@ -44,6 +44,11 @@
   align-items: center !important;
   font-family: "Afacad Medium";
 }
+.desktop_nav .desktop_nav_inner .desktop_nav_inner_box .desktop_nav_inner_row .desktop_nav_R .desktop_nav_side_cnt ul div {
+  display: flex !important;
+  justify-content: space-evenly !important;
+  align-items: center !important;
+}
 .desktop_nav .desktop_nav_inner .desktop_nav_inner_box .desktop_nav_inner_row .desktop_nav_R .desktop_nav_side_cnt ul li {
   margin-left: 30px;
 }
@@ -68,10 +73,28 @@
 .desktop_nav .desktop_nav_inner .desktop_nav_inner_box .desktop_nav_inner_row .desktop_nav_R .desktop_nav_side_cnt ul li a:hover .link_bar {
   width: 100%;
 }
+.desktop_nav .desktop_nav_inner .desktop_nav_inner_box .desktop_nav_inner_row .desktop_nav_R .desktop_nav_side_cnt ul li button {
+  padding: 5px;
+  color: #222222;
+  font-size: 28px;
+  border-radius: 5px;
+}
 .desktop_nav .desktop_nav_inner .desktop_nav_inner_box .desktop_nav_inner_row .desktop_nav_R .desktop_nav_side_cnt ul .black_button a {
   background-color: #222222;
-  padding: 10px;
   color: white;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.desktop_nav .desktop_nav_inner .desktop_nav_inner_box .desktop_nav_inner_row .desktop_nav_R .desktop_nav_side_cnt ul .black_button a span {
+  padding: 10px;
+}
+.desktop_nav .desktop_nav_inner .desktop_nav_inner_box .desktop_nav_inner_row .desktop_nav_R .desktop_nav_side_cnt ul .black_button a img {
+  max-width: 40px;
+  height: 40px;
+  overflow: hidden;
 }
 .desktop_nav .desktop_nav_inner .desktop_nav_inner_box .desktop_nav_inner_row .desktop_nav_R .desktop_nav_side_cnt ul .black_button a:hover {
   background-color: #060606;
@@ -118,7 +141,7 @@
 
 .mobile_nav_menu {
   display: none;
-  position: absolute;
+  position: fixed;
   background-color: rgb(221, 221, 221);
   z-index: 1000;
   max-width: 500px;
@@ -150,6 +173,7 @@
   height: 80px;
   position: relative;
   border-bottom: 2px solid rgb(214, 214, 214);
+  cursor: pointer;
 }
 .mobile_nav_menu ul li a {
   display: flex;
@@ -162,6 +186,13 @@
   padding: 20px;
   width: 100%;
   height: 100%;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+.mobile_nav_menu ul li a img {
+  max-width: 40px;
+  border-radius: 10px;
 }
 .mobile_nav_menu ul li a:hover {
   background-color: #222222;
