@@ -1,0 +1,34 @@
+[
+    {
+        "objectID": 1,
+        "objectType": "MOVIE",
+        "objectName": "Slingblade",
+        "objectPoster": "../medias/imgs/posters/movies/slingblade-poster.webp",
+        "objectRoute": "/review-slingblade",
+        "objectStorageKey": "MOVIE__1"
+    },
+    {
+        "objectID": 2,
+        "objectType": "TVSHOW",
+        "objectName": "Better Call Saul",
+        "objectPoster": "../medias/imgs/posters/tv/better-call-saul-poster.webp",
+        "objectRoute": "/review-better-call-saul",
+        "objectStorageKey": "TVSHOW__1"
+    },
+    {
+        "objectID": 3,
+        "objectType": "MOVIE",
+        "objectName": "Halloween",
+        "objectPoster": "../medias/imgs/posters/movies/halloween-poster.webp",
+        "objectRoute": "/review-halloween-1978",
+        "objectStorageKey": "MOVIE__2"
+    },
+    {
+        "objectID": 4,
+        "objectType": "TVSHOW",
+        "objectName": "Justified",
+        "objectPoster": "../medias/imgs/posters/tv/justified-poster.webp",
+        "objectRoute": "/review-justified",
+        "objectStorageKey": "TVSHOW__2"
+    }
+]
