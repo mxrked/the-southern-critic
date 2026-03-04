@@ -15,14 +15,20 @@ export async function getItemsFromDB(e) {
         const items = collectionSnapshot.docs.map(doc => {
             const data = doc.data();
 
-            // Convert Firestore Timestamp to ISO string
-            if (data.createdAt && data.createdAt.toDate) {
-                data.createdAt = data.createdAt.toDate().toISOString();
-            }
+            // Convert Firestore Timestamps to ISO strings for serialization
+            const createdAt = data.createdAt?.toDate().toISOString() || null;
+            const updatedAt = data.updatedAt?.toDate().toISOString() || null;
+
+            // // Convert Firestore Timestamp to ISO string
+            // if (data.createdAt && data.createdAt.toDate) {
+            //     data.createdAt = data.createdAt.toDate().toISOString();
+            // }
 
             return {
                 id: doc.id,
                 ...data,
+                createdAt,
+                updatedAt
             };
     });
 

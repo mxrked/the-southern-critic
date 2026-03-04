@@ -26,7 +26,7 @@ export async function addItemToDB(setItems, e) {
 
     // Getting the exact poster name and type
     const posterFolder = itemType === "MOVIE" ? "movies" : "tv";
-    const posterPath = `medias/imgs/posters/${posterFolder}/${itemPoster.name}`;
+    const posterPath = `../../medias/imgs/posters/${posterFolder}/${itemPoster.name}`;
 
     const itemFinalRoute = "/reviews/" + itemRoute;
 
