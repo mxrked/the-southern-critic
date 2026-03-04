@@ -7,11 +7,18 @@
 import { useRouter } from "next/router";
 import Head from "next/head";
 
+function formatSlug(slug) {
+    if (!slug) return "";
+
+    return slug.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+}
 
 export const PageHead = ({pageHeadData}) => {
 
-
     const router = useRouter();
+
+    const {reviewSlug} = router.query;
+
     const SE = "The Southern Critic";
     
     let title, keywords, description;
@@ -25,6 +32,13 @@ export const PageHead = ({pageHeadData}) => {
             break;
         case "/reviews":
             title = SE + " - Reviews";
+            keywords = [];
+            description = "";
+            break;
+        case "/reviews/[reviewSlug]":
+            title = reviewSlug 
+            ? `${SE} - ${formatSlug(reviewSlug)}`
+            : SE + " - Review";
             keywords = [];
             description = "";
             break;
