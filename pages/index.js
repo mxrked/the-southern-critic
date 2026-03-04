@@ -14,11 +14,17 @@ import CloseMobileNavMenu from "@/assets/functions/Nav/CloseMobileNavMenu";
 
 import { getItemsFromDB } from "@/database/getters/getItemsFromDB";
 import { removeItemFromDB } from "@/database/removers/removeItemFromDB";
+import { updateReviewName } from "@/database/updaters/updateReviewName";
+import { updateReviewPoster } from "@/database/updaters/updateReviewPoster";
+import { updateReviewText } from "@/database/updaters/updateReviewText";
+import { updateReviewRating } from "@/database/updaters/updateReviewRating";
+import { updateReviewType } from "@/database/updaters/updateReviewType";
+import { updateReviewRoute } from "@/database/updaters/updateReviewRoute";
+import { updateReviewStorageKey } from "@/database/updaters/updateReviewStorageKey";
 
 // Component Imports
 import { PageHead } from "@/assets/components/global/All/PageHead";
 
-import { AddItemToDB } from "@/assets/components/admin/AddItemToDB";
 
 import { DesktopNav } from "@/assets/components/global/Nav/Desktop/DesktopNav";
 import { MobileNav } from "@/assets/components/global/Nav/Mobile/MobileNav";
@@ -30,7 +36,9 @@ import { IndexReviews } from "@/assets/components/pages/Index/IndexReviews";
 // Style Imports
 import globalStyles from "../assets/styles/modules/Global/Global.module.css";
 import "../assets/styles/modules/Index/Index.module.css";
+import { AdminZone } from "@/assets/components/admin/AdminZone";
 
+//! Getting the current user's watchlist
 async function fetchWatchlist(uid) {
   const accountDocRef = doc(thesoutherncriticdb, "accounts", uid);
   const accountDocSnap = await getDoc(accountDocRef);
@@ -150,66 +158,17 @@ export default function Home({pageIconData, mediaItems}) {
       <main id="PAGE_MAIN">
 
         {isDevelopmentMode ? (
-          <div style={{padding: "30px", backgroundColor: "ghostwhite", border: "1px solid rgba(0,0,0,0.1)"}}>
+          
+          <AdminZone setReviewItems={setReviewItems} reviewItems={reviewItems}/>
 
-            <h1 style={{fontSize: "30px", fontWeight: "bold", marginBottom: "20px"}}><strong>ADMIN ZONE:</strong></h1>
-
-            <AddItemToDB setItems={setReviewItems}/>
-
-            <ul style={{padding: "20px", marginTop: "30px", backgroundColor: "rgba(0,0,0,0.1)"}}>
-
-              {reviewItems.map(item => (
-                <li key={item.objectStorageKey} style={{marginTop: "20px", marginBottom: "20px"}}>
-                  Name: {item.objectName} <br/>
-                  Poster: <img src={item.objectPoster} style={{maxWidth: "100px"}}/> <br/> 
-                  Route: <a href={item.objectRoute}>Link</a>
-                  <br/>
-                  <br/>
-                  Review: <p>" {item.objectReview} "</p>
-                  <br/>
-                  Rating: <p><strong>{item.objectRating}</strong> Stars</p>
-                  <br/>
-                  <button onClick={() => {
-                    const confirmed = window.confirm("Are you sure you want to delete this item?");
-                    if (confirmed) {
-                      removeItemFromDB(item.objectStorageKey, setReviewItems);
-                    }
-                  }}>Remove Item</button>
-
-
-                  <br/>
-                  <br/>
-                  --------------
-                  </li>
-              ))}
-
-            </ul>
-
-          </div>
         ) : null}
-
-        {/**
-         * 
-         *  <div>
-
-          {accountWatchlist.map(item => (
-            <div>
-
-              {item.name}
-
-            </div>
-          ))}
-
-        </div>
-         * 
-         */}
 
         <DesktopNav isLoggedInValue={isLoggedInValue}/>
         <MobileNav/>
         <MobileNavMenu isLoggedInValue={isLoggedInValue}/>
 
         <IndexTop/>
-        <IndexReviews/>
+        <IndexReviews reviewItems={reviewItems}/>
       </main>
 
     </div>
