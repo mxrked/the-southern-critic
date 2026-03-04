@@ -1,12 +1,13 @@
 import { addItemToDB } from "@/database/setters/addItemToDB"
 import { getItemsFromDB } from "@/database/getters/getItemsFromDB";
 
+
 export const AddItemToDB = ({setItems}) => {
 
     return (
-        <div id="admin_AddItemToDB">
+        <div id="admin_AddItemToDB"  style={{display: "none"}}>
 
-            <form onSubmit={(e) => {
+            <form id="addReviewItemForm" onSubmit={(e) => {
                 addItemToDB(setItems, e);
             }}>
 
