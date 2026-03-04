@@ -159,6 +159,189 @@
         }
     }
 }
+.index_reviews {
+    background-color: $Gallery;
+
+    .index_reviews_inner {
+        max-width: 1400px;
+        @include quickCenter("relative");
+        padding-top: 190px;
+        padding-bottom: 190px;
+
+        h1 {
+            text-align: center;
+            font-family: "Inter Bold";
+            font-size: clamp(3rem, 3vw, 3.5rem);
+            color: $MineShaft;
+            line-height: 80px;
+            margin-bottom: 50px;
+        }
+
+        .index_reviews_filters {
+            max-width: 1100px;
+            @include quickCenter("relative");
+
+            .index_reviews_filters_box {
+                .index_reviews_filters_row {
+                    .index_reviews_filters_side {
+                        height: 100px;
+                        @include displayElement(flex, "", center);
+                    }
+
+                    .index_reviews_filter_L {
+                        justify-content: flex-start;
+
+                        .index_reviews_filters_side_cnt {
+                            width: 100%;
+                            max-width: 300px;
+
+                            ul {
+                                @include displayElement(flex, space-between, center);
+
+                                li {
+                                    button {
+                                        font-family: "Inter Medium";
+                                        border: 2px solid $MineShaft;
+                                        padding: 10px;
+
+                                        &:hover {
+                                            background-color: $MineShaft !important;
+                                            color: white !important;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .index_reviews_filter_R {
+                        justify-content: flex-end;
+
+                        .index_reviews_filters_side_cnt {
+                            width: 100%;
+                            max-width: 600px;
+
+                            .reviews_search {
+                                width: 100%;
+                                background-color: $Alto;
+                                @include displayElement(flex, center, center);
+
+                                input {
+                                    width:90%;
+                                    border: 1px solid $Alto;
+                                    height: 50px;
+                                    padding: 10px;
+                                    background-color: white;
+                                    font-family: "Inter Medium";
+                                    color: $MineShaft;
+                                    letter-spacing: 1px;
+
+                                    &::placeholder {
+                                        color: $MineShaft;
+                                    }
+                                }
+
+                                button {
+                                    padding: 10px;
+                                    width: 10%;
+                                    @include displayElement(flex, center, center);
+
+                                    &:hover {
+                                        background-color: $MineShaft;
+                                        color: white;
+                                        height: 50px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .index_reviews_main {
+            max-width: 1100px;
+            @include quickCenter("relative");
+            margin-top: 60px;
+            background-color: white;
+            min-height: 500px;
+            padding: 30px;
+
+            .index_reviews_main_box {
+                .index_reviews_main_row {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 20px;
+                    
+                    .index_review {
+                        flex: 0 0 calc((100% - 40px) / 3);
+                        height: 600px;
+                        overflow: hidden;
+                        position: relative;
+                        border-radius: 4px;
+
+                        .index_review_poster {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            height: 100%;
+                            width: 100%;
+                        }
+
+                        .index_review_darken {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            height: 100%;
+                            width: 100%;
+                            background-color: rgba(0,0,0,0.5);
+                            @include displayElement(flex, center, center);
+                            text-align: center;
+                            color: white;
+
+                            &:hover {
+                                background-color: rgba(0,0,0,0.75);
+
+                                .index_review_darken_text {
+                                    button {
+                                        background-color: white;
+                                        color: black;
+                                    }
+                                }
+                            }
+
+                            .index_review_darken_text {
+                                .review_type {
+                                font-family: "Inter Medium";
+                                display: block;
+                                white-space: pre-wrap;
+                                }
+
+                                .review_name {
+                                    font-family: "Inter Bold";
+                                    font-size: 29px;
+                                    display: block;
+                                    margin-top: 15px;
+                                    margin-bottom: 35px;
+                                    white-space: pre-wrap;
+                                }
+
+                                button {
+                                    font-family: "Inter Semibold";
+                                    font-size: 18px;
+                                    padding: 10px;
+                                    border: 3px solid white;
+                                    color: white;
+                                    text-transform: uppercase;
+                                    border-radius: 2px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 // Responsive
 @media all and (max-width: 1995px) {
