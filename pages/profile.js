@@ -27,6 +27,7 @@ import { MobileNavMenu } from "@/assets/components/global/Nav/Mobile/MobileNavMe
 import globalStyles from "../assets/styles/modules/Global/Global.module.css";
 import "../assets/styles/modules/Login_Register/Login_Register.module.css";
 
+//! Getting the current user's watchlist
 async function fetchWatchlist(uid) {
   const accountDocRef = doc(thesoutherncriticdb, "accounts", uid);
   const accountDocSnap = await getDoc(accountDocRef);
