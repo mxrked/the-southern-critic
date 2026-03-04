@@ -5,7 +5,7 @@
  */
 
 
-const LOGOS_ROUTE = "../medias/logos/";
+const LOGOS_ROUTE = "../../medias/logos/";
 
 const MAIN_BLACK_LOGO = LOGOS_ROUTE + "/logo-black.png";
 const MAIN_WHITE_LOGO = LOGOS_ROUTE + "logo-white.png";
