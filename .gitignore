@@ -15,6 +15,7 @@
 # production
 /build
 /test-files
+IMPORTANT_NOTES.txt
 
 # misc
 .DS_Store
