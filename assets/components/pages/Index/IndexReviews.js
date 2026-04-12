@@ -7,34 +7,14 @@ import { LazyLoadBackgroundImage } from "../../global/All/LazyLoadBackgroundImag
 
 import {MOVIE_POSTER_PH, TV_SHOW_POSTER_PH} from "@/assets/cdns/imgsCDN"
 
+import { addToAccountWatchlist } from "@/database/setters/addToAccountWatchlist";
+
 import sampleMovieTvData from "@/public/data/sampleMovieTvData.json";
 
 import styles from "../../../styles/modules/Index/Index.module.css";
 
 
-const TestSampleData = ({data}) => {
-    return (
-        <div>
-
-            {data.map((item) => (
-                <div key={item.objectID}>
-
-                    <p>ID: {item.objectID}</p>
-                    <p>Name: {item.objectName}</p>
-                    <p>Type: {item.objectType}</p>
-                    <p>Route: {item.objectRoute}</p>
-                    <p>Storage Key: {item.objectStorageKey}</p>
-                    <img src={item.objectPoster}/>
-
-                </div>
-            ))}
-
-        </div>
-    )
-}
-
-
-const IndexReview = ({item}) => {
+const IndexReview = ({item, isLoggedInValue}) => {
 
     const itemRef = useRef();
     const router = useRouter();
@@ -60,7 +40,7 @@ const IndexReview = ({item}) => {
             }
 
             // If tvshow..
-            if (item.objectType === "TV-SHOW") {
+            if (item.objectType === "TVSHOW") {
 
                 // Removing the opposite class
                 if (IRC.classList.contains("movie-review")) {
@@ -71,16 +51,14 @@ const IndexReview = ({item}) => {
                 IRC.classList.add("tvshow-review");
             }
         }
-    }, [])
+    }, [item.objectType])
 
     return (
         <div className={`${styles.index_review} review col-lg-4 col-md-4 col-sm-6 col-xs-12`} ref={itemRef}>
 
             <LazyLoadBackgroundImage image_url={item.objectPoster} image_alt={`TheSouthernCritic - ${item.objectName} poster.`} style_className={styles.index_review_poster}/>
             
-            <div className={`${styles.index_review_darken}`} style={{cursor: "pointer"}} onClick={(e) => {
-                router.push(item.objectRoute);
-            }}>
+            <div className={`${styles.index_review_darken}`} >
 
                 <div className={`${styles.index_review_darken_text}`}>
 
@@ -88,7 +66,18 @@ const IndexReview = ({item}) => {
 
                     <span className={`${styles.review_name}`}>{item.objectName}</span>
 
-                    <button>Read Review</button>
+                    <div>
+                        <button style={{cursor: "pointer"}} onClick={(e) => {
+                            router.push(item.objectRoute);
+                        }}>Read Review</button>
+
+                        {isLoggedInValue ? (
+                            <button onClick={async (e) => {
+                                // Add item to watchlist
+                                await addToAccountWatchlist(item.objectStorageKey);
+                            }}>Add To Watchlist</button>
+                        ) : null}
+                    </div>
 
                 </div>
 
@@ -99,7 +88,7 @@ const IndexReview = ({item}) => {
 }
 
 
-export const IndexReviews = ({reviewItems}) => {
+export const IndexReviews = ({reviewItems, isLoggedInValue}) => {
 
     const [searchTerm, setSearchTerm] = useState("");
     const [filteredReviews, setFilteredReviews] = useState(reviewItems);
@@ -121,7 +110,8 @@ export const IndexReviews = ({reviewItems}) => {
 
     }
 
-    const displayReviewsByType = (items) => {
+    // This is used to 
+    const displayReviewItems = (items) => {
         items.forEach((item) => {
             item.style.display = 'block';
         })
@@ -140,10 +130,11 @@ export const IndexReviews = ({reviewItems}) => {
             // Displaying movies
             if (reviewType === "MOVIES") {
 
+                // Grabbing all movies reviews
                 if (document.querySelector(".movie-review")) {
                     const MOVIES = document.querySelectorAll(".movie-review");
 
-                    displayReviewsByType(MOVIES);
+                    displayReviewItems(MOVIES);
                 }
 
             }
@@ -151,10 +142,11 @@ export const IndexReviews = ({reviewItems}) => {
             // Displaying tv shows
             if (reviewType === "TVSHOWS") {
 
+                // Grabbing all tv show reviews
                 if (document.querySelector(".tvshow-review")) {
                     const TVSHOWS = document.querySelectorAll(".tvshow-review");
 
-                    displayReviewsByType(TVSHOWS);
+                    displayReviewItems(TVSHOWS);
                 }
 
             }
@@ -168,16 +160,19 @@ export const IndexReviews = ({reviewItems}) => {
         }
     }
 
+    // This is for the search field
     const searchFilter = (value) => {
-        setSearchTerm(value);
+        setSearchTerm(value); // Setting the current input value
 
         if (!value || value.trim() === "") {
             setFilteredReviews(reviewItems);
             return;
         }
 
+        // Filtering the reviews based off the name
         const FILTERED_REVIEWS = reviewItems.filter((item) => item.objectName.toLowerCase().includes(value.toLowerCase()));
 
+        // Setting the reviews to be displayed filtered on the frontend
         setFilteredReviews(FILTERED_REVIEWS);
     }
 
@@ -285,7 +280,7 @@ export const IndexReviews = ({reviewItems}) => {
                             <div className={`${styles.index_reviews_main_row} row`}>
 
                                 {filteredReviews.map((item) => (
-                                    <IndexReview item={item}/>
+                                    <IndexReview item={item} isLoggedInValue={isLoggedInValue}/>
                                 ))}
 
                             </div>
