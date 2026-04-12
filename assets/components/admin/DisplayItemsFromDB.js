@@ -4,6 +4,7 @@
  * 
  */
 
+import { useState } from "react";
 
 import { removeItemFromDB } from "@/database/removers/removeItemFromDB";
 import { updateReviewName } from "@/database/updaters/updateReviewName";
@@ -15,6 +16,11 @@ import { updateReviewRoute } from "@/database/updaters/updateReviewRoute";
 import { updateReviewStorageKey } from "@/database/updaters/updateReviewStorageKey";
 
 export const DisplayItemsInDB = ({setReviewItems, reviewItems}) => {
+
+  // Review Textarea states
+  const [editingKey, setEditingKey] = useState(null);
+  const [reviewTextDraft, setReviewTextDraft] = useState("");
+
     return (
         <ul id="displayReviewItemsList" style={{display: "none", padding: "20px", marginTop: "30px", backgroundColor: "rgba(0,0,0,0.1)"}}>
         
@@ -51,14 +57,18 @@ export const DisplayItemsInDB = ({setReviewItems, reviewItems}) => {
                           }} style={{backgroundColor: "lightgrey", color: "black", padding: "10px", border: "1px solid grey", borderRadius: "5px"}}>Edit Poster</button>
                           <br/> <br/>
                           <button onClick={() => {
-                            const newText = prompt(
-                              "Edit review text:",
-                              item.objectReview // This will pre-fill the text prompt
-                            );
+                            // const newText = prompt(
+                            //   "Edit review text:",
+                            //   item.objectReview // This will pre-fill the text prompt
+                            // );
         
-                            if (newText !== null) {
-                              updateReviewText(item.objectStorageKey, newText, setReviewItems);
-                            }
+                            // if (newText !== null) {
+                            //   updateReviewText(item.objectStorageKey, newText, setReviewItems);
+                            // }
+
+                            // Creating the states for the review textarea
+                            setEditingKey(item.objectStorageKey);
+                            setReviewTextDraft(item.objectReview);
                           }} style={{backgroundColor: "lightgrey", color: "black", padding: "10px", border: "1px solid grey", borderRadius: "5px"}}>Edit Review Text</button>
                           <br/> <br/>
                           <button onClick={() => {
@@ -90,7 +100,9 @@ export const DisplayItemsInDB = ({setReviewItems, reviewItems}) => {
                             }
                           }} style={{backgroundColor: "lightgrey", color: "black", padding: "10px", border: "1px solid grey", borderRadius: "5px"}}>Edit Type</button>
                           <br/> <br/>
-                          <button onClick={() => {
+                          {/**
+                           * 
+                           * <button onClick={() => {
                             const newStorageKey = prompt(
                               "Enter new storage key:",
                               item.objectStorageKey
@@ -101,6 +113,8 @@ export const DisplayItemsInDB = ({setReviewItems, reviewItems}) => {
                             }
                           }} style={{backgroundColor: "lightgrey", color: "black", padding: "10px", border: "1px solid grey", borderRadius: "5px"}}>Edit Storage Key</button>
                           <br/> <br/>
+                           * 
+                           */}
                           <button onClick={() => {
                             const confirmed = window.confirm("Are you sure you want to delete this item?");
                             if (confirmed) {
@@ -109,6 +123,67 @@ export const DisplayItemsInDB = ({setReviewItems, reviewItems}) => {
                           }} style={{backgroundColor: "darkred", color: "white", padding: "10px", border: "1px solid grey", borderRadius: "5px"}}>Remove Item</button>
                           </div>
         
+                          <br/>
+                          <p style={{textDecoration: "underline", textDecorationColor: "red"}}><span style={{color: "red", fontWeight: "bold"}}>NOTE:</span> To edit/change the storage key, you must do so in the Firebase database itself.</p>
+
+                          {/** REVIEW TEXT EDITOR */}
+                          {editingKey === item.objectStorageKey && (
+                            <div style={{marginTop: "20px", maxWidth: "900px"}}>
+
+                              <textarea
+                                value={reviewTextDraft}
+                                onChange={(e) => setReviewTextDraft(e.target.value)}
+                                style={{
+                                  width: "100%",
+                                  minHeight: "350px",
+                                  padding: "10px",
+                                  marginBottom: "10px",
+                                  fontSize: "16px",
+                                  resize: "vertical",
+                                  backgroundColor: "white",
+                                  border: "1px solid grey"
+                                }}
+                                />
+
+                                <div style={{ marginTop: "10px" }}>
+
+                                  <button
+                                    onClick={() => {
+                                      updateReviewText(item.objectStorageKey, reviewTextDraft, setReviewItems);
+                                      setEditingKey(null);
+                                    }}
+                                    style={{
+                                      marginRight: "10px",
+                                      padding: "8px 14px",
+                                      backgroundColor: "green",
+                                      color: "white",
+                                      borderRadius: "6px",
+                                      fontSize: "18px",
+                                      border: "1px solid grey"
+                                    }}
+                                  >
+                                    Save
+                                  </button>
+
+                                  <button
+                                    onClick={() => setEditingKey(null)}
+                                    style={{
+                                      padding: "8px 14px",
+                                      backgroundColor: "darkred",
+                                      color: "white",
+                                      borderRadius: "6px",
+                                      fontSize: "18px",
+                                      border: "1px solid grey"
+                                    }}
+                                  >
+                                    Cancel
+                                  </button>
+
+                                </div>
+
+                            </div>
+                          )}
+
                           </li>
                       ))}
         
