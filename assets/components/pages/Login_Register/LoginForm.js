@@ -8,15 +8,13 @@ import { useRouter } from "next/router";
 
 import { loginToAccount } from "@/database/account/loginToAccount";
 
+import switchToForgotPassword from "@/assets/functions/Login_Register/SwitchToForgotPassword";
+
 import styles from "../../../styles/modules/Login_Register/Login_Register.module.css";
 
 export const LoginForm = () => {
 
     const router = useRouter();
-
-    function forgotPassword(e) {
-        e.preventDefault();
-    }
 
     // function submitLogin(e) {
     //     e.preventDefault();
@@ -76,7 +74,9 @@ export const LoginForm = () => {
 
 
                 <button id="forgotPassword" className={`${styles.forgot_password_btn}`} onClick={(e) => {
-                    forgotPassword(e);
+                    e.preventDefault();
+
+                    switchToForgotPassword();
                 }}>Forgot Password?</button>
 
             </div>

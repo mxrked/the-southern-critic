@@ -6,9 +6,11 @@
 
 import { LoginForm } from "./LoginForm";
 import { RegisterForm } from "./RegisterForm";
+import { ForgotPasswordForm } from "./ForgotPasswordForm";
 
 import switchToLogin from "@/assets/functions/Login_Register/SwitchToLogin";
 import switchToRegister from "@/assets/functions/Login_Register/SwitchToRegister";
+import switchToForgotPassword from "@/assets/functions/Login_Register/SwitchToForgotPassword";
 
 import styles from "../../../styles/modules/Login_Register/Login_Register.module.css";
 
@@ -49,6 +51,12 @@ export const LoginRegisterMain = () => {
                         <div className={`${styles.register_form_holder}`} id="registerFormHolder">
 
                             <RegisterForm/>
+
+                        </div>
+
+                        <div className={`${styles.forgot_password_form_holder}`} id="forgotPasswordFormHolder">
+
+                            <ForgotPasswordForm/>
 
                         </div>
 
