@@ -13,14 +13,14 @@ import { getAuth } from "firebase/auth";
 import CloseMobileNavMenu from "@/assets/functions/Nav/CloseMobileNavMenu";
 
 import { getItemsFromDB } from "@/database/getters/getItemsFromDB";
-import { removeItemFromDB } from "@/database/removers/removeItemFromDB";
-import { updateReviewName } from "@/database/updaters/updateReviewName";
-import { updateReviewPoster } from "@/database/updaters/updateReviewPoster";
-import { updateReviewText } from "@/database/updaters/updateReviewText";
-import { updateReviewRating } from "@/database/updaters/updateReviewRating";
-import { updateReviewType } from "@/database/updaters/updateReviewType";
-import { updateReviewRoute } from "@/database/updaters/updateReviewRoute";
-import { updateReviewStorageKey } from "@/database/updaters/updateReviewStorageKey";
+// import { removeItemFromDB } from "@/database/removers/removeItemFromDB";
+// import { updateReviewName } from "@/database/updaters/updateReviewName";
+// import { updateReviewPoster } from "@/database/updaters/updateReviewPoster";
+// import { updateReviewText } from "@/database/updaters/updateReviewText";
+// import { updateReviewRating } from "@/database/updaters/updateReviewRating";
+// import { updateReviewType } from "@/database/updaters/updateReviewType";
+// import { updateReviewRoute } from "@/database/updaters/updateReviewRoute";
+// import { updateReviewStorageKey } from "@/database/updaters/updateReviewStorageKey";
 
 // Component Imports
 import { PageHead } from "@/assets/components/global/All/PageHead";
@@ -29,14 +29,17 @@ import { PageHead } from "@/assets/components/global/All/PageHead";
 import { DesktopNav } from "@/assets/components/global/Nav/Desktop/DesktopNav";
 import { MobileNav } from "@/assets/components/global/Nav/Mobile/MobileNav";
 import { MobileNavMenu } from "@/assets/components/global/Nav/Mobile/MobileNavMenu";
+import { AdminZone } from "@/assets/components/admin/AdminZone";
 
 import { IndexTop } from "@/assets/components/pages/Index/IndexTop";
 import { IndexReviews } from "@/assets/components/pages/Index/IndexReviews";
+import { IndexWatchlist } from "@/assets/components/pages/Index/IndexWatchlist";
+
+import { Footer } from "@/assets/components/global/Footer/Footer";
 
 // Style Imports
 import globalStyles from "../assets/styles/modules/Global/Global.module.css";
 import "../assets/styles/modules/Index/Index.module.css";
-import { AdminZone } from "@/assets/components/admin/AdminZone";
 
 //! Getting the current user's watchlist
 async function fetchWatchlist(uid) {
@@ -168,7 +171,11 @@ export default function Home({pageIconData, mediaItems}) {
         <MobileNavMenu isLoggedInValue={isLoggedInValue}/>
 
         <IndexTop/>
-        <IndexReviews reviewItems={reviewItems}/>
+        <IndexReviews reviewItems={reviewItems} isLoggedInValue={isLoggedInValue}/>
+        <IndexWatchlist isLoggedInValue={isLoggedInValue}/>
+
+        <Footer/>
+
       </main>
 
     </div>
