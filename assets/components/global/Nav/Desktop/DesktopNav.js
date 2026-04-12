@@ -61,17 +61,33 @@ export const DesktopNav = ({isLoggedInValue}) => {
 
                                     </li>
 
-                                    <li>
+                                    {isLoggedInValue ? (
 
-                                        <a href="/profile#watchlist">
-                                        
-                                            <span>WATCHLIST</span>
+                                        <li>
+
+                                            <a href="/profile#watchlist">
                                             
-                                            <span className={`${styles.link_bar}`}/>
-                                        
-                                        </a>
+                                                <span>WATCHLIST</span>
+                                                
+                                                <span className={`${styles.link_bar}`}/>
+                                            
+                                            </a>
 
-                                    </li>
+                                        </li>
+
+                                    ) : (
+                                        <li>
+
+                                            <a href="/login_register">
+                                            
+                                                <span>WATCHLIST</span>
+                                                
+                                                <span className={`${styles.link_bar}`}/>
+                                            
+                                            </a>
+
+                                        </li>
+                                    )}
                                     
                                     {isLoggedInValue ? (
                                         <div>
@@ -80,7 +96,7 @@ export const DesktopNav = ({isLoggedInValue}) => {
 
                                                 <a href="/profile">
                                                 
-                                                    <LazyLoadImage src={sessionStorage.getItem("Logged In Pfp")}/>
+                                                    <LazyLoadImage src={sessionStorage.getItem("Logged In Pfp")} alt="Profile picture"/>
                                                 
                                                 </a>
 
