@@ -32,6 +32,48 @@
     font-family: "Inter Medium";
     src: url("../../../fonts/Inter/Inter-Medium.ttf");
 }
+@font-face {
+    font-family: "Inter Light";
+    src: url("../../../fonts/Inter/Inter-Light.ttf");
+}
+
+.review_main {
+    padding-top: 120px;
+    padding-bottom: 120px;
+
+    .review_main_inner {
+        .review_main_inner_top {
+            text-align: center;
+
+            img {
+                max-width: 400px;
+                display: block;
+                margin-bottom: 50px;
+                @include quickCenter("relative");
+            }
+
+            .created_date {
+                font-family: "Inter Medium";
+                margin-bottom: 10px;
+                display: block;
+            }
+
+            h1 {
+                font-family: "Inter Bold";
+                font-size: clamp(3rem, 4vw, 4rem);
+            }
+        }
+
+        .review_text_holder {
+            max-width: 1000px;
+            @include quickCenter("relative");
+            font-family: "Inter Light";
+            font-size: $Link;
+            margin-top: 60px;
+            white-space: pre-wrap;
+        }
+    }
+}
 
 // Responsive
 @media all and (max-width: 1995px) {
