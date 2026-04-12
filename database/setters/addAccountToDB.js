@@ -16,9 +16,9 @@ export async function addAccountToDB(e) {
     const accountEmail = addAccountForm.querySelector("#registerEmail");
     const accountPassword = addAccountForm.querySelector("#registerPassword");
     const accountConfirmPassword = addAccountForm.querySelector("#registerConfirmPassword");
-    const newAccountPfp = `../medias/imgs/placeholders/new-account-pfp.webp`;
+    const newAccountPfp = "https://raw.githubusercontent.com/mxrked/freelance_projects_CDN/main/CDN_thesoutherncritic/imgs/placeholders/new-account-pfp.webp";
     // const accountWatchlist = [{name: "test1"}, {name: "test2"}, {name: "test3"}];
-    const accountWatchlist = [{}];
+    const accountWatchlist = [];
 
     const formComments = document.getElementById("formComments");
 
