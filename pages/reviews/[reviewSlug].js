@@ -21,6 +21,10 @@ import { DesktopNav } from "@/assets/components/global/Nav/Desktop/DesktopNav";
 import { MobileNav } from "@/assets/components/global/Nav/Mobile/MobileNav";
 import { MobileNavMenu } from "@/assets/components/global/Nav/Mobile/MobileNavMenu";
 
+import { ReviewMain } from "@/assets/components/pages/Reviews/ReviewMain";
+
+import { Footer } from "@/assets/components/global/Footer/Footer";
+
 // Style Imports
 import globalStyles from "../../assets/styles/modules/Global/Global.module.css";
 import "../../assets/styles/modules/Reviews/Reviews.module.css";
@@ -85,21 +89,45 @@ export async function getServerSideProps({req}) {
     }
 }
 
+
+
 export default function ReviewPage({pageIconData, mediaItems}) {
     const router = useRouter();
     const {reviewSlug} = router.query;
 
+    const [isDevelopmentMode, setIsDevelopmentMode] = useState(false);
     const [isLoggedInValue, setIsLoggedInValue] = useState(false);
     const [accountWatchlist, setAccountWatchlist] = useState([]);
     const [reviewItem, setReviewItem] = useState(null);
 
-    // Fetching the logged in user's watchlist
+    // Checking if the user is logged in
+    useEffect(() => {
+
+        const LOGGED_IN_VALUE = sessionStorage.getItem("Logged In");
+        setIsLoggedInValue(!!LOGGED_IN_VALUE);
+
+    }, []);
+
+    useEffect(() => {
+
+        if (typeof window !== "undefined") {
+        if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+            setIsDevelopmentMode(true);
+            console.log("IN DEVELOPMENT MODE")
+        } else {
+            setIsDevelopmentMode(false);
+            console.log("IN PRODUCTION MODE");
+        }
+        }
+
+    }, [])
+
     useEffect(() => {
         if (isLoggedInValue) {
-            const accountUid = sessionStorage.getItem("Logged In UID");
-            fetchWatchlist(accountUid).then((watchlist) => {
+        const accountUid = sessionStorage.getItem("Logged In UID");
+        fetchWatchlist(accountUid).then((watchlist) => {
             setAccountWatchlist(watchlist);
-            })
+        })
         }
     }, [isLoggedInValue]);
 
@@ -139,7 +167,10 @@ export default function ReviewPage({pageIconData, mediaItems}) {
     const reviewRating = reviewItem?.objectRating;
     const reviewText = reviewItem?.objectReview;
     const reviewItemType = reviewItem?.objectType;
+    const reviewItemRoute = reviewItem?.objectRoute;
+    const reviewStorageKey = reviewItem?.objectStorageKey;
 
+    const REVIEW = [reviewCreatedTime, reviewName, reviewPoster, reviewRating, reviewText, reviewItemType, reviewItemRoute, reviewStorageKey];
 
     return (
         <div id="PAGE_ID">
@@ -154,7 +185,12 @@ export default function ReviewPage({pageIconData, mediaItems}) {
                 <MobileNav/>
                 <MobileNavMenu isLoggedInValue={isLoggedInValue}/>
 
+
+                {/** <LazyLoadImage src={reviewPoster}/> */}
+
+                <ReviewMain review={REVIEW}/>
                 
+                <Footer/>
 
             </main>
 
