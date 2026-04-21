@@ -72,14 +72,87 @@
             margin-top: 60px;
             white-space: pre-wrap;
         }
+
+        .review_watchlist_btn_holder {
+            margin-top: 80px;
+            max-width: 200px;
+            @include quickCenter("relative");
+
+            button {
+                width: 100%;
+                text-align: center;
+                background-color: $MineShaft;
+                color: white;
+                padding: 15px;
+                font-family: "Inter Semibold";
+                font-size: $Link;
+
+                &:hover {
+                    background-color: $CodGray;
+                }
+            }
+        }
     }
 }
 
 // Responsive
 @media all and (max-width: 1995px) {
+    .review_main {
+        padding-left: 70px;
+        padding-right: 70px;
+        padding-bottom: 80px;
+
+        .review_main_inner {
+            .review_main_inner_top {
+                img {
+                    max-width: 360px;
+                }
+
+                h1 {
+                    font-size: clamp(2.7rem, 3.7vw, 3.7rem);
+                }
+            }
+
+            .review_text_holder {
+                max-width: 900px;
+            }
+
+            .review_watchlist_btn_holder {
+                margin-top: 50px;
+                max-width: 180px;
+            }
+        }
+    }
 }
 
 @media all and (max-width: 991px) {
+    .review_main {
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 80px;
+        padding-bottom: 80px;
+
+        .review_main_inner {
+            .review_main_inner_top {
+                img {
+                    max-width: 280px;
+                }
+
+                h1 {
+                    font-size: clamp(2.3rem, 3.3vw, 3.3rem);
+                }
+            }
+
+            .review_text_holder {
+                max-width: 600px;
+            }
+
+            .review_watchlist_btn_holder {
+                margin-top: 50px;
+                max-width: 170px;
+            }
+        }
+    }
 }
 
 @media (min-width: 992px) {
@@ -87,28 +160,258 @@
 
 // Desktop Window (Smallest)
 @media all and (max-width: 768px) {
+    .review_main {
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 80px;
+        padding-bottom: 80px;
+
+        .review_main_inner {
+            .review_main_inner_top {
+                img {
+                    max-width: 230px;
+                }
+
+                h1 {
+                    font-size: clamp(2rem, 3vw, 3rem);
+                }
+            }
+
+            .review_text_holder {
+                max-width: 500px;
+                font-size: 16px;
+            }
+
+            .review_watchlist_btn_holder {
+                margin-top: 50px;
+                max-width: 160px;
+
+                button {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
 }
 
 // Smaller Devices (Phones)
 @media all and (max-width: 419px) {
+    .review_main {
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+
+        .review_main_inner {
+            .review_main_inner_top {
+                img {
+                    max-width: 180px;
+                }
+
+                h1 {
+                    font-size: clamp(1.6rem, 2.6vw, 2.6rem);
+                }
+            }
+
+            .review_text_holder {
+                max-width: 300px;
+                font-size: 15px;
+                margin-top: 40px;
+            }
+
+            .review_watchlist_btn_holder {
+                margin-top: 40px;
+                max-width: 150px;
+
+                button {
+                    font-size: 15px;
+                }
+            }
+        }
+    }
 }
 
 // Pixel 2 XL
 @media only screen and (min-device-width: 411px) and (max-device-width: 823px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+    .review_main {
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+
+        .review_main_inner {
+            .review_main_inner_top {
+                img {
+                    max-width: 210px;
+                }
+
+                h1 {
+                    font-size: clamp(1.8rem, 2.8vw, 2.8rem);
+                }
+            }
+
+            .review_text_holder {
+                max-width: 500px;
+                font-size: 16px;
+                margin-top: 40px;
+            }
+
+            .review_watchlist_btn_holder {
+                margin-top: 40px;
+                max-width: 160px;
+
+                button {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
 }
 
 // Ipad
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+    .review_main {
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 80px;
+        padding-bottom: 80px;
+
+        .review_main_inner {
+            .review_main_inner_top {
+                img {
+                    max-width: 270px;
+                }
+
+                h1 {
+                    font-size: clamp(2rem, 3vw, 3rem);
+                }
+            }
+
+            .review_text_holder {
+                max-width: 550px;
+                font-size: 17px;
+                margin-top: 40px;
+            }
+
+            .review_watchlist_btn_holder {
+                margin-top: 60px;
+                max-width: 170px;
+
+                button {
+                    font-size: 17px;
+                }
+            }
+        }
+    }
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+    .review_main {
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 70px;
+        padding-bottom: 60px;
+
+        .review_main_inner {
+            .review_main_inner_top {
+                img {
+                    max-width: 220px;
+                }
+
+                h1 {
+                    font-size: clamp(2rem, 3vw, 3rem);
+                }
+            }
+
+            .review_text_holder {
+                max-width: 550px;
+                font-size: 16px;
+                margin-top: 40px;
+            }
+
+            .review_watchlist_btn_holder {
+                margin-top: 40px;
+                max-width: 160px;
+
+                button {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
 }
 
 // iPad Pro
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+    .review_main {
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 80px;
+        padding-bottom: 80px;
+
+        .review_main_inner {
+            .review_main_inner_top {
+                img {
+                    max-width: 320px;
+                }
+
+                h1 {
+                    font-size: clamp(2.3rem, 3.3vw, 3.3rem);
+                }
+            }
+
+            .review_text_holder {
+                max-width: 750px;
+                font-size: 18px;
+                margin-top: 40px;
+            }
+
+            .review_watchlist_btn_holder {
+                margin-top: 60px;
+                max-width: 180px;
+
+                button {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
 }
 
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+    .review_main {
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 80px;
+        padding-bottom: 80px;
+
+        .review_main_inner {
+            .review_main_inner_top {
+                img {
+                    max-width: 280px;
+                }
+
+                h1 {
+                    font-size: clamp(2.3rem, 3.3vw, 3.3rem);
+                }
+            }
+
+            .review_text_holder {
+                max-width: 750px;
+                font-size: 18px;
+                margin-top: 40px;
+            }
+
+            .review_watchlist_btn_holder {
+                margin-top: 60px;
+                max-width: 180px;
+
+                button {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
 }
 
 // Laptops
