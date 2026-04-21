@@ -4,7 +4,12 @@
  * 
  */
 
+import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
+
 import { LazyLoadImage } from "react-lazy-load-image-component";
+
+import { addToAccountWatchlist } from "@/database/setters/addToAccountWatchlist";
 
 import styles from "../../../styles/modules/Reviews/Reviews.module.css";
 
@@ -27,7 +32,7 @@ const renderRatingStars = (rating) => {
 };
 
 
-export const ReviewMain = ({review}) => {
+export const ReviewMain = ({review, isLoggedInValue}) => {
 
     /**
      * 
@@ -64,6 +69,19 @@ export const ReviewMain = ({review}) => {
                     {review[4]}
 
                 </div>
+
+                {!isLoggedInValue ? (
+                    <div className={`${styles.review_watchlist_btn_holder}`}>
+
+                        <button id="reviewWatchListBtn" 
+                        onClick={async (e) => {
+                            // Add item to watchlist
+                            await addToAccountWatchlist(review[7]);
+                        }}
+                        >Add To Watchlist</button>
+                        
+                    </div>
+                ) : null}
 
             </div>
 
