@@ -188,7 +188,7 @@ export default function ReviewPage({pageIconData, mediaItems}) {
 
                 {/** <LazyLoadImage src={reviewPoster}/> */}
 
-                <ReviewMain review={REVIEW}/>
+                <ReviewMain review={REVIEW} isLoggedInValue={isLoggedInValue}/>
                 
                 <Footer/>
 
